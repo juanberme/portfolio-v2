@@ -10,6 +10,6 @@ export const SITE = {
     github: "https://github.com/juanberme",
     behance: "https://www.behance.net/camilo22604819",
     /* points at the CV on the current live site (agreed: keep it there for now) */
-    cv: "https://camilo-bermeo.vercel.app/cv/camilo-bermeo-cv.pdf",
+    cv: "/cv/camilo-bermeo-cv.pdf",
   },
 } as const;

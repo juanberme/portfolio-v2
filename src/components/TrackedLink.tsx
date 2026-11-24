@@ -16,7 +16,9 @@ export default function TrackedLink({ href, event, eventProps, onClick, children
     track(event, eventProps);
     onClick?.(e);
   };
-  if (href.startsWith("/") || href.startsWith("#")) {
+  // Files (e.g. the CV PDF) skip <Link> so the browser loads them directly.
+  const isFile = /\.[a-z0-9]+$/i.test(href.split(/[?#]/)[0]);
+  if ((href.startsWith("/") || href.startsWith("#")) && !isFile) {
     return (
       <Link href={href} onClick={handle} {...rest}>
         {children}
