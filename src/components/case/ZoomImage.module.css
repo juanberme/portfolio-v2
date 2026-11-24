@@ -1,0 +1,99 @@
+/* the thumbnail: the image itself is the button */
+.thumb {
+  appearance: none;
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--r-md);
+  cursor: zoom-in;
+  color: inherit;
+}
+/* a small "expand" badge, shown on hover and keyboard focus */
+.hint {
+  position: absolute;
+  top: var(--s100);
+  right: var(--s100);
+  width: var(--s400);
+  height: var(--s400);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--t-16);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.thumb:hover .hint,
+.thumb:focus-visible .hint {
+  opacity: 1;
+}
+/* on touch screens there is no hover: keep the badge visible so people know they can tap */
+@media (hover: none) {
+  .hint {
+    opacity: 0.9;
+  }
+}
+
+.dialog {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: var(--s200);
+  border: 0;
+  background: rgba(13, 13, 13, 0.88);
+  display: none;
+}
+.dialog[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dialog::backdrop {
+  background: transparent;
+}
+/* As large as the screen allows: full width, unless the height runs out first (then the width
+   follows the image's aspect ratio, --ar, set inline). */
+.frame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s100);
+  width: min(1600px, 100%, calc((100svh - 112px) * var(--ar, 1.4)));
+}
+.content {
+  width: 100%;
+}
+.full {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-sm);
+}
+.close {
+  appearance: none;
+  border: 0;
+  min-height: 44px;
+  padding: 0 var(--s200);
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 var(--t-12) / 1 var(--f3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  --ring: var(--paper);
+  --ring-halo: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint {
+    transition: none;
+  }
+}

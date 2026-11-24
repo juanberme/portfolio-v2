@@ -1,0 +1,36 @@
+.section {
+  /* height of the pinned "Selected work" title; the first card sticks right below it */
+  --head: 132px;
+  padding-top: var(--section);
+  /* no bottom padding: the .hold spacer below the last card already leaves the gap */
+  padding-bottom: 0;
+}
+.pin {
+  position: sticky;
+  top: calc(var(--offset, var(--head)) - var(--head));
+  z-index: 0;
+  height: var(--head);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.hold {
+  height: max(var(--section), 14vh);
+}
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s75) var(--s200);
+  padding-bottom: var(--s300);
+}
+@media (max-width: 760px) {
+  .section {
+    --head: 118px;
+  }
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

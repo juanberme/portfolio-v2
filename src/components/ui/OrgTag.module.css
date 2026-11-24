@@ -1,0 +1,29 @@
+/* One tag for every place I work or have worked at. Everything is in em so it scales with the
+   surrounding text: ~13px inside a 15px line, ~15px inside an 18px paragraph. */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  vertical-align: middle;
+  padding: 0.22em 0.75em 0.22em 0.28em;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(13, 13, 13, 0.16);
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--f2);
+  font-size: 0.86em;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.noLogo {
+  padding-left: 0.75em;
+}
+.logo {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  flex: none;
+}

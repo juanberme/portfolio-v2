@@ -1,0 +1,76 @@
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s700) var(--s200) var(--s300);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+  gap: var(--s100);
+}
+/* the step back: narrower and outlined */
+.prev {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--s75);
+  padding: var(--s400);
+  border-radius: var(--r-lg);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+  color: var(--ink);
+  transition: background 0.25s;
+}
+.prev:hover {
+  background: var(--white);
+}
+.prevTitle {
+  font: 600 clamp(var(--t-24), 2vw, var(--t-28)) / 1.1 var(--f1);
+}
+/* the next case: copy and button stay on one row, so the card keeps the same height */
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s300);
+  padding: var(--s400);
+  border-radius: var(--r-lg);
+  background: var(--navy);
+  color: var(--paper);
+}
+.copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s75);
+}
+.kicker {
+  color: var(--paper-70);
+}
+.title {
+  font: 600 clamp(var(--t-28), 2.6vw, var(--t-40)) / 1.1 var(--f1);
+}
+/* a long summary never makes the card grow: two lines at most */
+.summary {
+  font-size: var(--t-16);
+  color: var(--paper-70);
+  max-width: 60ch;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+.card > :last-child {
+  flex-shrink: 0;
+}
+@media (max-width: 760px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+  /* on a phone the next case comes first; the previous one is the step back */
+  .prev {
+    order: 2;
+    padding: var(--s300);
+  }
+  .card {
+    flex-wrap: wrap;
+  }
+}

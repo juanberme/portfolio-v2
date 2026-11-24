@@ -1,0 +1,134 @@
+.outer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s200) var(--s200) 0;
+}
+.header {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: clamp(var(--r-lg), 4vw, var(--r-2xl));
+  /* about 80% of the first screen, between 560 and 768px: the first project peeks below it */
+  min-height: clamp(560px, 80svh, 768px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 clamp(var(--s200), 4vw, var(--s500)) var(--s800);
+  /* height of the aurora band along the bottom (its glyphs fill roughly its lower 28%) */
+  --ascii-band: 560px;
+}
+/*
+ * The ASCII layer (HeroField.tsx) fills the hero. Its mask:
+ *  - an elliptical hole around the copy, sized from the copy box in JS, so text and buttons stay clear;
+ *  - a fade at the top, so the nav stays clear.
+ */
+.fx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  --hole: radial-gradient(
+    ellipse var(--hole-rx, 40%) var(--hole-ry, 30%) at var(--hole-x, 50%) var(--hole-y, 55%),
+    transparent 72%,
+    #000 100%
+  );
+  --top: linear-gradient(180deg, transparent 0, transparent var(--s800), #000 calc(var(--s800) * 2));
+  -webkit-mask-image: var(--hole), var(--top);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--hole), var(--top);
+  mask-composite: intersect;
+}
+.nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(var(--s300), 5vw, var(--s700));
+  padding: var(--s250) 0 0;
+  font: 500 var(--t-12) var(--f2);
+}
+.navLink {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.logo {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+.lang {
+  position: absolute;
+  z-index: 3;
+  top: 20px;
+  right: clamp(16px, 3vw, 28px);
+}
+.copy {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  width: min(640px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(var(--s100), 1.4vw, var(--s200));
+  padding: clamp(var(--s250), 3vw, var(--s500)) 0;
+}
+.hi {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s75);
+  font: 500 var(--t-16) var(--f2);
+  color: var(--ink);
+}
+.title {
+  font: 600 clamp(var(--t-32), 3.8vw, var(--t-56)) / 1.04 var(--f1);
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+.body {
+  font-size: clamp(var(--t-16), 1.3vw, var(--t-18));
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 58ch;
+}
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s100) var(--s300);
+  margin-top: var(--s75);
+}
+
+/* phones: a smaller band and less reserved space */
+@media (max-width: 760px) {
+  .header {
+    --ascii-band: 320px;
+    /* phones: the copy fills the width, so the field shows above and below it; keep room below */
+    padding-bottom: var(--s900);
+  }
+}
+
+/* on phones the centred nav and the language link would collide: the nav moves left */
+@media (max-width: 520px) {
+  .nav {
+    align-self: flex-start;
+    gap: var(--s250);
+  }
+  .lang {
+    top: var(--s250);
+    right: var(--s200);
+  }
+}

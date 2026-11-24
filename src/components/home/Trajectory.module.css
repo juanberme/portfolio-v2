@@ -1,0 +1,44 @@
+.section {
+  padding-top: var(--section);
+  padding-bottom: var(--section);
+}
+.head {
+  padding-bottom: var(--s300);
+}
+.wall {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s100);
+}
+.current {
+  grid-column: span 2;
+  grid-row: span 2;
+  justify-content: space-between;
+  padding: var(--s500);
+  min-height: 320px;
+}
+.logoLg {
+  display: block;
+  border-radius: var(--r-md);
+}
+.past {
+  min-height: 200px;
+  justify-content: space-between;
+}
+.logo {
+  display: block;
+  border-radius: var(--r-sm);
+}
+@media (max-width: 900px) {
+  .wall {
+    grid-template-columns: 1fr;
+  }
+  .current {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .current {
+    padding: var(--s300);
+    gap: var(--s300);
+  }
+}

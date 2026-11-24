@@ -1,0 +1,13 @@
+.card > *:not(.fx) {
+  position: relative;
+  z-index: 1;
+}
+.fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}

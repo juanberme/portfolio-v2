@@ -1,0 +1,44 @@
+.w {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  padding: var(--s300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s200);
+  min-width: 0;
+}
+.card {
+  background: var(--card);
+}
+.navy {
+  background: var(--navy);
+  color: var(--paper);
+  /* focus ring flips to light on navy */
+  --ring: var(--paper);
+  --ring-halo: var(--navy);
+}
+.navy :global(.dim) {
+  color: var(--paper-70);
+}
+.blue {
+  background: var(--blue);
+  color: var(--navy);
+}
+.blue :global(.dim) {
+  color: rgba(22, 22, 46, 0.74);
+}
+.orange {
+  background: var(--orange);
+  color: var(--paper);
+}
+.orange :global(.dim) {
+  color: rgba(244, 242, 239, 0.84);
+}
+.bare {
+  background: transparent;
+  border-radius: 0;
+}
+.flush {
+  padding: 0;
+}

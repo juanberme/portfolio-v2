@@ -1,0 +1,60 @@
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--s200) var(--s300);
+}
+.card {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  position: relative;
+  background: var(--navy);
+  color: var(--paper);
+  min-height: 336px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.inner {
+  position: relative;
+  padding: clamp(var(--s300), 3vw, var(--s500));
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s250) var(--s400);
+  align-items: flex-end;
+  justify-content: space-between;
+  background: linear-gradient(0deg, var(--navy) 65%, rgba(22, 22, 46, 0));
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s100);
+}
+.left img {
+  display: block;
+}
+.title {
+  font: 700 clamp(var(--t-28), 2.6vw, var(--t-40)) / 1 var(--f1);
+  letter-spacing: -0.035em;
+}
+.email {
+  align-self: flex-start;
+  margin-top: var(--s50);
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s50) var(--s300);
+}
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s75);
+  /* the side padding comes from .wrap, so the line sits on the same grid as the contact block */
+  padding-top: var(--s200);
+  padding-bottom: var(--s200);
+  font: 400 var(--t-12) var(--f2);
+  color: var(--muted);
+}
+

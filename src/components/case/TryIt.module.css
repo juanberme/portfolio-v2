@@ -1,0 +1,143 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  margin-top: var(--s300);
+  border-radius: var(--r-xl);
+  display: grid;
+  gap: var(--s300);
+}
+/* the glyphs fade out behind the copy, so the text stays easy to read */
+.fx {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.9;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, transparent 35%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0, transparent 35%, #000 100%);
+}
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s100);
+  padding: var(--s500) var(--s500) var(--s500);
+}
+.kicker {
+  opacity: 0.8;
+}
+.title {
+  font: 600 clamp(var(--t-28), 3vw, var(--t-40)) / 1.1 var(--f1);
+}
+.body {
+  font-size: var(--t-18);
+  line-height: 1.5;
+  max-width: 40ch;
+}
+.actions {
+  margin-top: var(--s200);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s300);
+}
+.qr {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--s200);
+}
+.qr img {
+  display: block;
+  width: 176px;
+  height: 176px;
+  padding: var(--s100);
+  border-radius: var(--r-sm);
+  background: #fff;
+}
+.qr figcaption {
+  max-width: 12ch;
+}
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* work made for a phone: copy on the left, the phone leaning out of the bottom right */
+/* two equal halves: the phone sits in the middle of the right half, not against the edge */
+.phone {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+.phone .shot {
+  align-self: end;
+  justify-self: center;
+  width: 280px;
+  /* room above the phone, so only its bottom is cut by the card */
+  padding-top: var(--s500);
+  margin-bottom: calc(-1 * var(--s800));
+}
+.phone .shot img {
+  filter: drop-shadow(0 var(--s200) var(--s300) rgba(13, 13, 13, 0.25));
+}
+
+/* a website: copy on top, the screen rising from the bottom edge */
+/* only the top of the page shows: the screen is cut by the card's bottom edge */
+.wide .shot {
+  padding: 0 var(--s500);
+  max-height: 440px;
+  overflow: hidden;
+}
+.wide .shot img {
+  border-radius: var(--r-md) var(--r-md) 0 0;
+  box-shadow: 0 calc(-1 * var(--s100)) var(--s400) rgba(13, 13, 13, 0.18);
+}
+
+@media (hover: none), (max-width: 760px) {
+  .qr {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .copy {
+    padding: var(--s400) var(--s300) 0;
+  }
+  .phone {
+    grid-template-columns: 1fr;
+  }
+  .phone .shot {
+    justify-self: center;
+    width: 200px;
+    padding-right: 0;
+    margin-bottom: calc(-1 * var(--s900));
+  }
+  .wide .shot {
+    padding: 0 var(--s300);
+  }
+}
+
+/* the button only shows where the QR doesn't */
+.actions .phoneOnly {
+  display: none;
+}
+@media (hover: none), (max-width: 760px) {
+  .actions .phoneOnly {
+    display: inline-flex;
+  }
+}
+
+.qr figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s100);
+}
+/* the browser link under the QR hint */
+.qrLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-transform: none;
+  letter-spacing: 0;
+  font: 400 var(--t-14) / 1.3 var(--f2);
+  min-height: 24px;
+}

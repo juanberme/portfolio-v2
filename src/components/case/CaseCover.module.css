@@ -1,0 +1,183 @@
+.cover {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  color: var(--paper);
+  height: min(920px, 100vh);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.nav {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  max-width: var(--max);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--s200);
+  padding: var(--s200) var(--s200);
+  font: 500 var(--t-12) var(--f2);
+  color: var(--paper);
+}
+.navLink {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.logo {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+.navRight {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s250);
+}
+
+.head {
+  position: relative;
+  z-index: 3;
+  margin-top: clamp(var(--s600), 9vh, var(--s900));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s200);
+  text-align: center;
+  padding: 0 var(--s200);
+}
+.meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--s75);
+  padding: var(--s50) var(--s200) var(--s50) var(--s50);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 16px rgba(13, 13, 13, 0.25);
+  font: 500 var(--t-14) var(--f2);
+}
+.metaText {
+  color: var(--paper);
+}
+/* long titles (e.g. "Agrupación de conceptos") break into two balanced lines instead of overflowing */
+.title {
+  font: 700 clamp(var(--t-64), 8vw, 128px) / 0.9 var(--f1);
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+  max-width: 100%;
+  padding: 0 var(--s200);
+  color: var(--paper);
+}
+.tease {
+  max-width: 52ch;
+  font: 400 clamp(var(--t-16), 1.35vw, var(--t-20)) / 1.45 var(--f1);
+  color: rgba(244, 242, 239, 0.88);
+}
+
+.persp {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(var(--s700), 8vh, var(--s900));
+  flex: none;
+}
+.crop {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  flex: none;
+  width: min(1000px, 80%);
+  aspect-ratio: 1180 / 570;
+  border-radius: var(--r-lg);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+  transition: transform 0.7s var(--curve), box-shadow 0.7s;
+  animation: rise 1.6s var(--curve) 0.2s backwards;
+}
+.crop:hover {
+  transform: translateY(-32px);
+  box-shadow: 0 60px 120px rgba(0, 0, 0, 0.6);
+}
+.cropImg {
+  position: absolute;
+  max-width: none;
+  height: auto;
+  display: block;
+}
+.phones {
+  display: flex;
+  gap: clamp(var(--s200), 2vw, var(--s400));
+  align-items: flex-start;
+  animation: rise 1.6s var(--curve) 0.2s backwards;
+}
+.phone {
+  width: clamp(150px, 20vw, 280px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+  transition: transform 0.7s var(--curve);
+}
+.phone:nth-child(2) {
+  margin-top: var(--s600);
+}
+.phones:hover .phone {
+  transform: translateY(-24px);
+}
+@keyframes rise {
+  from {
+    transform: translateY(160px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crop,
+  .phones {
+    animation: none;
+  }
+}
+@media (max-width: 900px) {
+  .cover {
+    height: auto;
+    min-height: 0;
+  }
+  .title {
+    white-space: normal;
+  }
+  .persp {
+    margin-bottom: calc(-1 * var(--s700));
+  }
+  .crop {
+    width: 92%;
+  }
+}
+/* small phones: smaller title and screens, so nothing is wider than the screen (WCAG 1.4.10) */
+@media (max-width: 520px) {
+  .title {
+    font-size: clamp(var(--t-40), 14vw, var(--t-56));
+  }
+  .phone {
+    width: 40vw;
+  }
+  .navRight {
+    gap: var(--s100);
+  }
+}

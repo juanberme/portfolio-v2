@@ -1,0 +1,134 @@
+/*
+ * Button system — two variants (canvas: "Botones · C tech + decodificar").
+ *
+ *  .secondary  outlined pill + circle arrow that turns 45° on hover; the mono label decodes
+ *              into ASCII and resolves. Main actions: Email me, View case.
+ *  .link       mono text + arrow. Everything else. The arrow says where it goes:
+ *              ↓ same page · → another page of the site · ↗ another site.
+ *
+ * Colours come from two variables so the same button works on every background:
+ *   --btn-ink  (text / fill)   --btn-bg (the surface it sits on)
+ * Set them on any container: <div style={{"--btn-ink": "var(--paper)", "--btn-bg": "var(--navy)"}}>
+ */
+
+.primary,
+.secondary,
+.link {
+  --ink: var(--btn-ink, var(--ink-base, #0d0d0d));
+  --bg: var(--btn-bg, var(--page));
+  font: 500 var(--t-12)/1 var(--f3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* ---------- secondary ---------- */
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s200);
+  min-height: 48px;
+  padding: 0 var(--s75) 0 var(--s250);
+  border-radius: var(--r-pill);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+
+.secondary:focus-visible {
+  box-shadow: inset 0 0 0 1.5px currentColor, 0 0 0 var(--s25) var(--ring-halo);
+}
+
+.secondary .label {
+  white-space: pre;
+}
+
+/* the circle with the arrow */
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--s400);
+  height: var(--s400);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+  font-size: var(--t-14);
+  letter-spacing: 0;
+  transition: transform 0.35s var(--curve), background 0.25s, color 0.25s;
+}
+/* a secondary rendered inside a bigger link (a whole card) reacts to that link's hover */
+:is(.secondary:hover, .secondary:focus-visible) .circle,
+:global(a):hover .secondary .circle,
+:global(a):focus-visible .secondary .circle {
+  transform: rotate(-45deg);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* ---------- primary: filled with the ink colour, label in the surface colour ---------- */
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s200);
+  min-height: 56px;
+  padding: 0 var(--s75) 0 var(--s300);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--bg);
+}
+.primary .label {
+  white-space: pre;
+}
+.primary .circle {
+  width: var(--s500);
+  height: var(--s500);
+}
+.primary:hover .circle,
+.primary:focus-visible .circle {
+  background: var(--bg);
+  color: var(--ink);
+}
+.primary:focus-visible {
+  box-shadow: 0 0 0 var(--s25) var(--bg), 0 0 0 var(--s50) var(--ink);
+  outline: none;
+}
+
+/* ---------- link ---------- */
+.link {
+  /* long labels wrap on small phones instead of widening the page */
+  white-space: normal;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s75);
+  min-height: 44px;
+  color: var(--ink);
+  text-underline-offset: 6px;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.arrow {
+  display: inline-block;
+  letter-spacing: 0;
+  transition: transform 0.3s var(--curve);
+}
+.link:hover .down {
+  transform: translateY(3px);
+}
+.link:hover .next {
+  transform: translateX(3px);
+}
+.link:hover .out {
+  transform: translate(2px, -2px);
+}
+
+.secondary:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circle,
+  .arrow {
+    transition: none;
+  }
+}

@@ -1,0 +1,275 @@
+.section {
+  padding-top: var(--section);
+  padding-bottom: var(--section);
+}
+/* map + GitHub stacked in the right column; the map keeps a small fixed height */
+.side {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s200);
+  min-width: 0;
+}
+.wall {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: var(--s200);
+  align-items: stretch;
+}
+.story {
+  grid-column: span 5;
+  min-height: 400px;
+  padding: var(--s200) var(--s400) var(--s200) 0;
+  gap: var(--s300);
+  justify-content: center;
+}
+.lead {
+  font: 400 clamp(var(--t-20), 1.9vw, var(--t-24)) / 1.45 var(--f1);
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.before {
+  font-size: var(--t-18);
+  line-height: 1.65;
+}
+
+/* map */
+.map {
+  flex: none;
+  height: 168px;
+  background: var(--map-bg);
+  border: var(--s25) solid var(--blue);
+}
+.mapcard {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--map-bg);
+}
+.mapImg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1040px;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+.halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--s700);
+  height: var(--s700);
+  margin: calc(var(--s700) / -2) 0 0 calc(var(--s700) / -2);
+  border-radius: 50%;
+  background: rgba(26, 115, 255, 0.13);
+  pointer-events: none;
+}
+.pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--s300);
+  height: var(--s300);
+  margin: calc(var(--s300) / -2) 0 0 calc(var(--s300) / -2);
+  border-radius: 50%;
+  background: var(--map-blue);
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow-sm);
+  pointer-events: none;
+}
+.pill {
+  position: absolute;
+  left: var(--s100);
+  bottom: var(--s100);
+  display: flex;
+  align-items: center;
+  gap: var(--s75);
+  background: var(--white);
+  border-radius: var(--r-pill);
+  padding: var(--s50) var(--s100) var(--s50) var(--s75);
+  box-shadow: var(--shadow-sm);
+}
+.pillDot {
+  width: var(--s75);
+  height: var(--s75);
+  border-radius: 50%;
+  background: var(--map-blue);
+  flex: none;
+}
+.pill b {
+  font-size: var(--t-12);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.time {
+  font-family: var(--f3);
+  font-size: var(--t-12);
+  color: var(--muted);
+}
+
+/* github */
+.github {
+  flex: 1;
+  min-height: 240px;
+  justify-content: space-between;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s100);
+}
+.ghTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s75);
+  color: var(--paper);
+}
+.handle {
+  font: 500 var(--t-12) var(--f3);
+  color: var(--blue);
+  min-height: var(--s400);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s50);
+}
+.onNavyDim {
+  color: var(--paper-70);
+}
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s50);
+  font: 500 var(--t-12) var(--f3);
+  color: var(--paper-70);
+}
+.legend i {
+  width: var(--s100);
+  height: var(--s100);
+  border-radius: 2px;
+}
+.graph {
+  position: relative;
+  flex: 1;
+  min-height: 112px;
+  transition: opacity 0.3s;
+}
+/* loading / error: the empty grid stays, quieter */
+.graphIdle {
+  opacity: 0.6;
+}
+.graphCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.graphFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s100);
+  flex-wrap: wrap;
+  min-height: var(--s300);
+  color: var(--paper);
+}
+.total {
+  font: 600 var(--t-16) var(--f1);
+}
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s75);
+  font: 500 var(--t-12) var(--f3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper-70);
+}
+.live :global(.dot) {
+  background: var(--blue);
+}
+.inlineLink {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* tools */
+.tools {
+  grid-column: span 8;
+  padding: var(--s300) var(--s400);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s75);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s75);
+  padding: var(--s75) var(--s100);
+  border-radius: var(--r-pill);
+  font-size: var(--t-14);
+  line-height: 1.3;
+  background: rgba(13, 13, 13, 0.055);
+  box-shadow: inset 0 0 0 1px rgba(13, 13, 13, 0.07);
+}
+.chip b {
+  font-weight: 500;
+}
+.ico {
+  display: inline-flex;
+  width: var(--s200);
+  height: var(--s200);
+  flex: none;
+  color: var(--ink);
+  opacity: 0.82;
+}
+/* logo files carry ~15% padding inside their 100×100 box, so they sit a bit larger than the icons */
+.logo {
+  width: var(--s250);
+  height: var(--s250);
+  flex: none;
+  display: block;
+  margin: calc(var(--s25) * -1);
+}
+.ico svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* the role next to each tool: 12px, --muted is ≥4.5:1 on the chip */
+.role {
+  font-family: var(--f3);
+  font-size: var(--t-12);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .wall {
+    grid-template-columns: 1fr;
+  }
+  .story,
+  .side,
+  .tools {
+    grid-column: span 1;
+  }
+  .story {
+    min-height: 0;
+    padding: 0 0 var(--s200);
+  }
+  .map {
+    height: 152px;
+  }
+  .tools {
+    padding: var(--s300);
+  }
+}
