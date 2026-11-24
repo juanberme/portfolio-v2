@@ -15,24 +15,31 @@
   line-height: 1.45;
 }
 
+/* label in the left rail; title and blocks in the reading column; wide screens span both */
 .section {
   display: grid;
   grid-template-columns: 152px minmax(0, 1fr);
-  gap: var(--s300);
+  column-gap: var(--s300);
+  row-gap: var(--s200);
   max-width: 1000px;
   margin: 0 auto;
   padding: var(--s650) var(--s200) 0;
-}
-.label {
-  padding-top: var(--s75);
-}
-.body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s200);
   font-size: var(--t-18);
   line-height: 1.6;
+}
+.label {
+  grid-column: 1;
+  grid-row: 1;
+  padding-top: var(--s75);
+}
+.cell {
+  grid-column: 2;
   max-width: 62ch;
+  min-width: 0;
+}
+.wideCell {
+  grid-column: 1 / -1;
+  min-width: 0;
 }
 .title {
   font: 600 var(--t-32) / 1.15 var(--f1);
@@ -101,10 +108,14 @@
 @media (max-width: 760px) {
   .section {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--s100);
-  }
-  .body {
+    row-gap: var(--s200);
     font-size: var(--t-16);
+  }
+  .label,
+  .cell,
+  .wideCell {
+    grid-column: 1;
+    grid-row: auto;
   }
   .title {
     font-size: var(--t-28);

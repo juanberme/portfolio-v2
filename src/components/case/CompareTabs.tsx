@@ -50,7 +50,7 @@ export default function CompareTabs({ before, after }: { before: Side; after: Si
         ))}
       </div>
       <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-${tab}`}>
-        <ZoomImage key={tab} shot={current.shot} sizes="(max-width: 760px) 92vw, 720px" className={s.shot} />
+        <ZoomImage key={tab} shot={current.shot} sizes="(max-width: 760px) 92vw, 1000px" className={s.shot} />
         <figcaption className="lbl dim" style={{ marginTop: "var(--s100)" }}>
           <Tx t={current.caption} />
         </figcaption>

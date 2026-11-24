@@ -38,7 +38,7 @@ function BlockView({ b }: { b: Block }) {
     case "figure":
       return (
         <figure className={s.figure}>
-          <ZoomImage shot={b.shot} sizes="(max-width: 760px) 92vw, 720px" className={s.shot} />
+          <ZoomImage shot={b.shot} sizes="(max-width: 760px) 92vw, 1000px" className={s.shot} />
           <figcaption className="lbl dim">
             <Tx t={b.caption} />
           </figcaption>
@@ -129,6 +129,9 @@ function BlockView({ b }: { b: Block }) {
 }
 
 /** One numbered section: label in the left rail, title and blocks on the right. */
+/** Screens wider than they are tall (web pages, spreads) get the section's full width, rail included, so they can be read. */
+const isWide = (b: Block) => (b.type === "figure" && b.shot.w / b.shot.h > 1.2) || b.type === "compare";
+
 export function CaseSection({ section }: { section: Section }) {
   return (
     <>
@@ -136,12 +139,16 @@ export function CaseSection({ section }: { section: Section }) {
         <p className={`lbl dim ${s.label}`}>
           <Tx t={section.label} />
         </p>
-        <div className={s.body}>
-          <h2 className={s.title}>
-            <Tx t={section.title} />
-          </h2>
-          {section.body.map((b, i) => (b.type === "tryit" ? null : <BlockView key={i} b={b} />))}
-        </div>
+        <h2 className={`${s.title} ${s.cell}`}>
+          <Tx t={section.title} />
+        </h2>
+        {section.body.map((b, i) =>
+          b.type === "tryit" ? null : (
+            <div key={i} className={isWide(b) ? s.wideCell : s.cell}>
+              <BlockView b={b} />
+            </div>
+          ),
+        )}
       </section>
       {/* the try-it card takes the site's full width, the same edges as the next-case and contact cards */}
       {section.body.map((b, i) =>
