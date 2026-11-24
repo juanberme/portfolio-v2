@@ -90,6 +90,15 @@ const S = {
       "Después de agrupar: cada concepto repetido queda en una sola fila marcada “Agrupado” con el total acumulado, y el agente ofrece Deshacer",
     ),
   },
+  cgSuggested: {
+    src: "/images/cases/concept-grouping-suggested.webp",
+    w: 1500,
+    h: 1083,
+    alt: tr(
+      "Each grouped row gets a suggested payment on the Alegra side, marked with a clock until the user accepts it",
+      "Cada fila agrupada recibe un pago sugerido del lado de Alegra, marcado con un reloj hasta que el usuario lo acepta",
+    ),
+  },
   cgBefore: {
     src: "/images/cases/concept-grouping-before.webp",
     w: 1100,
@@ -246,8 +255,8 @@ export const CASES: Case[] = [
           {
             type: "p",
             text: tr(
-              "Amplitude showed how big the gap was. Only **6% of users** chose automatic reconciliation; the other 94% stayed with manual, even though the team had invested in the automatic flow.",
-              "Amplitude mostró el tamaño de la brecha. Solo el **6% de los usuarios** elegía la conciliación automática; el otro 94% seguía con la manual, aunque el equipo había invertido en el flujo automático.",
+              "Amplitude showed how big the gap was. Of the users who reconcile, only **6%** used automatic reconciliation; the other 94% stayed with manual, even though the team had invested in the automatic flow.",
+              "Amplitude mostró el tamaño de la brecha. De los usuarios que concilian, solo el **6%** usaba la conciliación automática; el otro 94% seguía con la manual, aunque el equipo había invertido en el flujo automático.",
             ),
           },
           {
@@ -323,8 +332,20 @@ export const CASES: Case[] = [
           {
             type: "p",
             text: tr(
-              "Once confirmed, each concept's movements collapse into a single row marked “Grouped”, with the combined total; expanding it shows every transaction included. If the user changes their mind, they can undo the grouping from the same accordion. The core behavior changed from “create one payment per charge” to “confirm once, the system handles the rest.”",
-              "Al confirmar, los movimientos de cada concepto se colapsan en una sola fila marcada como “Agrupado”, con el total acumulado; al expandirla se ven todos los movimientos incluidos. Si el usuario se arrepiente, puede deshacer la agrupación desde el mismo acordeón. El comportamiento central cambió de “crear un pago por cargo” a “confirmar una vez, el sistema hace el resto”.",
+              "Once confirmed, each concept's movements collapse into a single row marked “Grouped”, with the combined total; expanding it shows every transaction included. If the user changes their mind, they can undo the grouping from the same accordion.",
+              "Al confirmar, los movimientos de cada concepto se colapsan en una sola fila marcada como “Agrupado”, con el total acumulado; al expandirla se ven todos los movimientos incluidos. Si el usuario se arrepiente, puede deshacer la agrupación desde el mismo acordeón.",
+            ),
+          },
+          {
+            type: "figure",
+            shot: S.cgSuggested,
+            caption: tr("The suggested payment · the user accepts it or not", "El pago sugerido · el usuario decide si lo acepta"),
+          },
+          {
+            type: "p",
+            text: tr(
+              "Then the system suggests a payment for each grouped row, ready to match the bank movement. The user reviews it and chooses whether to accept it; when they do, the row is reconciled. The core behavior changed from “create one payment per charge” to “confirm once, the system handles the rest.”",
+              "Después, el sistema le sugiere un pago para cada fila agrupada, listo para cruzar con el movimiento del banco. El usuario lo revisa y escoge si lo acepta; al aceptarlo, la fila queda conciliada. El comportamiento central cambió de “crear un pago por cargo” a “confirmar una vez, el sistema hace el resto”.",
             ),
           },
           {
